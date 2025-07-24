@@ -71,10 +71,12 @@
     <script>
         var canv;
         var ctx;
-        
+        window.addEventListener("resize", function(){
+            location.reload(true);
+        });
         window.onload = function(){
             var scaleW = vwToPxNum(100)/1920;
-            alert(scaleW);
+            //alert(scaleW);
             document.getElementById("pageTitle").innerHTML = name + "'s Profile";
             canv = document.getElementById("profileCanvas");
             imgCanv = document.getElementById("imgCanvas");
@@ -256,6 +258,7 @@
                     current = document.createElement("video");
                     current.id = "tempVideo";
                     current.controls = true;
+                    
 
                     source = document.createElement("source");
                     source.src = "videos/video"+index+".mp4";
@@ -264,7 +267,7 @@
 
                     current.style = "height:200px;width:auto; display:block;";
 
-                    current.style = "height:400px; width:auto; left:"+addVwPxNumInPx(30,10)+"px; top:"+vhToPxNum(25)+"px; position:absolute;";
+                    current.style = "height:"+400*scaleW+"px; width:auto; left:"+addVwPxNumInPx(30,10)+"px; top:"+vhToPxNum(25)+"px; position:absolute;";
                     current.style.zIndex = 12;
                 
                     document.body.appendChild(current);
@@ -273,10 +276,10 @@
                     current.id = "tempParagraph";
                     current.innerHTML = videoDescriptions[index-1];
                     current.style.width = vwToPxNum(40)-10+"px";
-                    current.style.maxHeight = vhToPxNum(10)+"px";
+                    current.style.maxHeight = vhToPxNum(10)/scaleW+"px";
                     current.style.overflow = "auto";
                     current.style.left = vwToPxNum(30)+10+"px";
-                    current.style.top = 390+vhToPxNum(25)+"px";
+                    current.style.top = 390*scaleW+vhToPxNum(25)+"px";
                     current.style.position = "absolute";
                     current.style.fontSize = 16;
                     current.style.zIndex = 13;
@@ -547,15 +550,15 @@
 
 
             var hOffset = (eventNames.length)*40+90    +500;
-            canv.height = (Math.floor((pressLinks.length-1)/5)*40+106);
+            canv.height = (Math.floor((pressLinks.length-1))*40+106);
             canv.height += hOffset;
             ctx.font = "20px Verdana";
             ctx.fillText("Press Links",10,25);
 
             for(var i = 0; i < pressLinks.length;i++){
-                var row = Math.floor(i/5);
-                var col = i%5;
-                newLinkSnippet(pressLinksTitles[i].substring(0,15), pressLinks[i], lastEnd+60+row*40+"px", 20+col*12+1+"vw", pressLinksTitles[i].substring(0,15));
+                var row = i;//i
+                var col = 0;
+                newLinkSnippet(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*40+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
             }
             lastEnd += canv.height-hOffset;
 
@@ -563,13 +566,13 @@
             /*----------Events----------*/
 
             ctx.font = "20px Verdana";
-            ctx.fillText("Events",10,25+Math.floor((pressLinks.length-1)/5)*40+100);
+            ctx.fillText("Events",10,25+Math.floor((pressLinks.length-1))*40+100);
 
             var current = newTextSnippet("Name","21vw",lastEnd+34+"px","16px")
             current.innerHTML = "Name";
             document.body.appendChild(current);
 
-            current = newTextSnippet("Date","40vw",lastEnd+34+"px","16px")
+            current = newTextSnippet("Date",addVwPxNumInPx(40,70)+"px",lastEnd+34+"px","16px")
             current.innerHTML = "Date";
             document.body.appendChild(current);
 
@@ -577,11 +580,10 @@
             current.innerHTML = "Location";
             document.body.appendChild(current);
 
-
             for(var i = 0; i < eventNames.length;i++){
                 newLinkSnippet(eventLinks[i], eventNames[i], lastEnd+(i+1)*40+50+"px", "21vw", eventNames[i]);
 
-                var current = newTextSnippet("Date"+i,"40vw",lastEnd+(i+1)*40+34+"px","16px")
+                var current = newTextSnippet("Date"+i,addVwPxNumInPx(40,70)+"px",lastEnd+(i+1)*40+34+"px","16px")
                 current.innerHTML = eventDates[i];
                 document.body.appendChild(current);
 
@@ -591,7 +593,7 @@
             }
             lastEnd += canv.height;
 
-            var newStart = Math.floor((pressLinks.length-1)/5)*40+106;
+            var newStart = Math.floor((pressLinks.length-1))*40+106;
             newStart += (eventNames.length)*40+100;
             ctx.font = "30px Verdana";
             ctx.fillText("Academics",10,25+newStart);
