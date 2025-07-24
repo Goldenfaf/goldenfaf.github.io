@@ -151,8 +151,8 @@
                 ctx.font = Math.floor(18*scaleW)+"px Verdana";
                 ctx.fillText(blurbInfoType[i],offset,42);
 
-                topLength = blurbInfo[i].length*20;
-                bottomLength = blurbInfoType[i].length*16;
+                topLength = blurbInfo[i].length*Math.floor(20*scaleW);
+                bottomLength = blurbInfoType[i].length*Math.floor(16*scaleW);
                 if(topLength > bottomLength){offset += Math.floor(topLength);}
                 else{offset += Math.floor(bottomLength);}
             }
@@ -185,7 +185,7 @@
                 var row = Math.floor((i-1)/3);
                 var col = Math.floor((i-1)%3);
                 temp = vwToPxNum(20*(col+1));
-                temp2 = 385 + 260*row;
+                temp2 = 385 + 260*row*scaleW;
 
                 current.style = "left:"+temp+"px; top:"+temp2+"px; position:absolute;";
                 current.style.height = Math.floor(200*scaleW)+"px";
@@ -200,7 +200,7 @@
 
                 /*----------Titles----------*/
 
-                current = newTextSnippet(videoTitles[i-1],20+20*(col)+"vw",340 + 260*row+  (20-Math.floor(scaleW*20))+"px",Math.floor(scaleW*20)+"px")
+                current = newTextSnippet(videoTitles[i-1],20+20*(col)+"vw",340 + scaleW*260*row+  (20-Math.floor(scaleW*20))+"px",Math.floor(scaleW*20)+"px")
                 current.innerHTML = videoTitles[i-1].substring(0,25);
                 document.body.appendChild(current);
 
@@ -211,7 +211,7 @@
                 butt.style.position = "absolute";
                 butt.style.scale = scaleW.toFixed(2);
                 butt.style.top = temp2-22+"px";
-                butt.style.left = temp+vwToPxNum(20)*scaleW-110*scaleW+"px";
+                butt.style.left = temp+vwToPxNum(20)*1-110*scaleW+"px";
                 
                 butt.addEventListener("click",()=>{
                     showCanvas(event.target);
@@ -298,6 +298,7 @@
             current.innerHTML=personalStatement;
             current.style.left = addVwPx(20,250);
             current.style.top = lastEnd+40+"px";
+            current.style.width = vwToPxNum(30)*scaleW*1.2+"px";
             current.style.position="absolute";
 
             /*----------Guardian 1----------*/
@@ -335,7 +336,7 @@
             /*----------Other----------*/
 
             var guardiansHeight = lastEnd+offset+105+16;
-            var statementHeight = (calculateLines(personalStatement,vwToPxNum(40),16)+1)*16 +40+lastEnd;
+            var statementHeight = (calculateLines(personalStatement,vwToPxNum(30)*scaleW*1.2,20)+1)*16 +40+lastEnd;
             
             if(guardiansHeight>statementHeight){
                 lastEnd = guardiansHeight;
@@ -393,66 +394,66 @@
 
             /*----------Team 1----------*/
 
-            ctx.font = "18px Verdana";
+            ctx.font = 18*scaleW + "px Verdana";
             ctx.fillText(team1Name, 20, 100);
 
             if(team1Location != null){
-                current = newTextSnippet(team1Location, addVwPx(20,20), lastEnd+40+"px", 16);
+                current = newTextSnippet(team1Location, addVwPx(20,20), lastEnd+40*scaleW+"px", 16*scaleW);
                 current.innerHTML = team1Location;
                 document.body.appendChild(current);
             }
 
             if(team1Coach != null){
-                current = newTextSnippet(team1Coach, addVwPx(20,20), lastEnd+70+"px", 16);
+                current = newTextSnippet(team1Coach, addVwPx(20,20), lastEnd+70*scaleW+"px", 16*scaleW);
                 current.innerHTML = team1Coach;
                 document.body.appendChild(current);
             }
 
             if(team1CoachPhone != null){
-                current = newTextSnippet(team1CoachPhone, addVwPx(20,20), lastEnd+90+"px", 16);
+                current = newTextSnippet(team1CoachPhone, addVwPx(20,20), lastEnd+90*scaleW+"px", 16*scaleW);
                 current.innerHTML = team1CoachPhone;
                 document.body.appendChild(current);
             }
 
             if(team1CoachEmail != null){
-                current = newTextSnippet(team1CoachEmail, addVwPx(20,20), lastEnd+110+"px", 16);
+                current = newTextSnippet(team1CoachEmail, addVwPx(20,20), lastEnd+110*scaleW+"px", 16*scaleW);
                 current.innerHTML = team1CoachEmail;
                 document.body.appendChild(current);
             }
 
-            ctx.font = "32px Verdana";
-            ctx.fillText(team1Jersey, vwToPxNum(30)-(50+30*(team1Jersey.length%2)), 210);
+            ctx.font = 32*scaleW+"px Verdana";
+            ctx.fillText(team1Jersey, vwToPxNum(30)-(50+30*(team1Jersey.length%2)), 70+140*scaleW);
             /*----------Team 2----------*/
 
-            ctx.font = "18px Verdana";
+            ctx.font = 18*scaleW+"px Verdana";
             ctx.fillText(team2Name, vwToPxNum(30)+20, 100);
 
             if(team2Location != null){
-                current = newTextSnippet(team2Location, addVwPx(50,20), lastEnd+40+"px", 16);
+                current = newTextSnippet(team2Location, addVwPx(50,20), lastEnd+40*scaleW+"px", 16*scaleW);
                 current.innerHTML = team2Location;
                 document.body.appendChild(current);
             }
 
             if(team2Coach != null){
-                current = newTextSnippet(team2Coach, addVwPx(50,20), lastEnd+70+"px", 16);
+                current = newTextSnippet(team2Coach, addVwPx(50,20), lastEnd+70*scaleW+"px", 16*scaleW);
                 current.innerHTML = team2Coach;
                 document.body.appendChild(current);
             }
 
             if(team2CoachPhone != null){
-                current = newTextSnippet(team2CoachPhone, addVwPx(50,20), lastEnd+90+"px", 16);
+                current = newTextSnippet(team2CoachPhone, addVwPx(50,20), lastEnd+90*scaleW+"px", 16*scaleW);
                 current.innerHTML = team2CoachPhone;
                 document.body.appendChild(current);
             }
 
             if(team2CoachEmail != null){
-                current = newTextSnippet(team2CoachEmail, addVwPx(50,20), lastEnd+110+"px", 16);
+                current = newTextSnippet(team2CoachEmail, addVwPx(50,20), lastEnd+110*scaleW+"px", 16*scaleW);
                 current.innerHTML = team2CoachEmail;
                 document.body.appendChild(current);
             }
 
-            ctx.font = "32px Verdana";
-            ctx.fillText(team2Jersey, vwToPxNum(60)-(50+30*(team2Jersey.length%2)), 210);
+            ctx.font = 32*scaleW+"px Verdana";
+            ctx.fillText(team2Jersey, vwToPxNum(60)-(50+30*(team2Jersey.length%2)), 70+140*scaleW);
 
             return lastEnd+210;
         }
@@ -703,7 +704,7 @@
             text.style.left = left;
             text.style.top = top;
             text.style.position = "absolute";
-            text.style.fontSize = fontSize;
+            text.style.fontSize = Math.floor(fontSize)+"px";
             return text;
         }
 
