@@ -74,6 +74,7 @@
         
         window.onload = function(){
             var scaleW = vwToPxNum(100)/1920;
+            alert(scaleW);
             document.getElementById("pageTitle").innerHTML = name + "'s Profile";
             canv = document.getElementById("profileCanvas");
             imgCanv = document.getElementById("imgCanvas");
@@ -211,7 +212,7 @@
                 butt.style.position = "absolute";
                 butt.style.scale = scaleW.toFixed(2);
                 butt.style.top = temp2-22+"px";
-                butt.style.left = temp+vwToPxNum(20)*1-110*scaleW+"px";
+                butt.style.left = temp+vwToPxNum(20)-110*scaleW+"px";
                 
                 butt.addEventListener("click",()=>{
                     showCanvas(event.target);
@@ -336,7 +337,7 @@
             /*----------Other----------*/
 
             var guardiansHeight = lastEnd+offset+105+16;
-            var statementHeight = (calculateLines(personalStatement,vwToPxNum(30)*scaleW*1.2,20)+1)*16 +40+lastEnd;
+            var statementHeight = (calculateLines(personalStatement,vwToPxNum(30)*scaleW*1.2,16)+1)*18 +40+lastEnd;
             
             if(guardiansHeight>statementHeight){
                 lastEnd = guardiansHeight;
@@ -363,7 +364,8 @@
 
         function doAthletic(scaleW,lastEnd){
             var firstEnd = lastEnd;
-            canv.height = 960+measureAthleticBox()*18;
+            canv.height = 960+measureAthleticBox()*20;
+            canv.width = vwToPxNum(80);
             //+16*calculateLines();
             ctx.font = "30px Verdana";
             ctx.fillText("Athletic Information",10,25);
@@ -394,7 +396,7 @@
 
             /*----------Team 1----------*/
 
-            ctx.font = 18*scaleW + "px Verdana";
+            ctx.font = 18*scaleW+"px Verdana";
             ctx.fillText(team1Name, 20, 100);
 
             if(team1Location != null){
@@ -425,7 +427,7 @@
             ctx.fillText(team1Jersey, vwToPxNum(30)-(50+30*(team1Jersey.length%2)), 70+140*scaleW);
             /*----------Team 2----------*/
 
-            ctx.font = 18*scaleW+"px Verdana";
+            ctx.font = "18px Verdana";
             ctx.fillText(team2Name, vwToPxNum(30)+20, 100);
 
             if(team2Location != null){
@@ -452,7 +454,7 @@
                 document.body.appendChild(current);
             }
 
-            ctx.font = 32*scaleW+"px Verdana";
+            ctx.font = "32px Verdana";
             ctx.fillText(team2Jersey, vwToPxNum(60)-(50+30*(team2Jersey.length%2)), 70+140*scaleW);
 
             return lastEnd+210;
@@ -704,7 +706,7 @@
             text.style.left = left;
             text.style.top = top;
             text.style.position = "absolute";
-            text.style.fontSize = Math.floor(fontSize)+"px";
+            text.style.fontSize = fontSize+"px";
             return text;
         }
 
