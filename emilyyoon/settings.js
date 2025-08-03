@@ -2,9 +2,11 @@ var name = "Emily Yoon";
 var positions = "P, UTL, 1B";
 
 var blurbInfo = ["2028", "Fullerton, CA", "BSC Bengals - Briggs 14U-R, BSC Bengals", "5'6\"", "115lbs", "4.78/4.83"];
-var blurbInfoType = ["Grad Year", "Hometown", "Club", "Height", "Weight", "GPA(Weighted)"];
+var blurbInfoType = ["Grad Year", "Hometown", "Club", "Height", "Weight", "GPA(Weighted/Unweighted)"];
 
 var videoAmnt = 4;
+
+var youtubePage = "https://www.youtube.com/@emilyyoon2028";
 
 var videoTitles = ["Video 1"
 ,"Video 2"
@@ -18,6 +20,7 @@ var videoDescriptions = ["I like cheeseI like cheeseI like cheeseI like cheeseI 
 ,""
 ]
 var email = "mailto:emilyyoon0001@gmail.com";
+var phone = "tel:7147320107";
 var twitter = "https://x.com/EmilyYoon2028";
 var instagram = "https://instagram.com/ey1_fastpitch";
 
@@ -54,8 +57,8 @@ var handednessThrowing = "Right";
 var pitchingSpeedMax = "64 mph";
 var hittingSpeedMax = "65 mph";
 
-var yards40Sprint = "5.59s";
 var yards20Sprint = "2.97s";
+var yards40Sprint = "5.59s";
 
 
 var additionalStats = ["https://web.gc.com/athlete/eyfastpitch",
@@ -113,8 +116,8 @@ var pressLinksTitles = ["EIS: PGF 10U Premier National Championship: Ohana Tiger
 var eventNames = ["PGF National Championship"
 ,"IDT Softball (2025 Independence Day Softball)"
 ];
-var eventLinks = ["https://pgfnationals.com/week-two"
-,"https://boulderidt.com/"
+var eventLinks = ["https://www.pgfnationals.com/week-two"
+,"https://www.boulderidt.com/"
 ];
 var eventDates = ["07/27/25 - 08/03/25"
 ,"07/02/25 - 07/06/25"
