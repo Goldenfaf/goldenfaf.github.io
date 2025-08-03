@@ -293,7 +293,13 @@
                 /*----------Titles----------*/
                 
                 current = newTextSnippet(videoTitles[i-1],addVwPxNumInPx(20+20*(col),10)+"px",lastEnd+340-76 +20+ scaleW*260*row+  (20-Math.floor(scaleW*20))+"px",Math.floor(scaleW*20)+"px")
-                current.innerHTML = videoTitles[i-1].substring(0,25);
+                if(videoTitles[i-1].length-4<50){
+                    current.innerHTML = videoTitles[i-1].substring(3,videoTitles[i-1].length-4);
+                }
+                else{
+                    current.innerHTML = videoTitles[i-1].substring(3,50);
+                }
+                
                 if(mobile){
                     current.style.top=lastEnd+340-76 +20+ 260*row+"px";
                 }
