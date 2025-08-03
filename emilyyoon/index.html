@@ -4,22 +4,22 @@
 <title id = "pageTitle">Firstname Lastname + 's Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 </head>
-<body>
+<body style = "background-color:#f0f1f3">
     <!-- Images -->
     <img hidden id = "profileImg" src="images/profile.jpg" alt = ":3" style="width:76px; height:76px; border-radius:50%;">
     <img hidden id = "profileImgLrg" src="images/profileLrg.jpg" alt = ":3" style="width:114px; height:114px; border-radius:50%;">
     <img hidden id = "positionGraphic" src="images/positionGraphic.png" alt = ":3" style="width:128px; height:128px; border-radius:50%;">
 
     <!-- Canvi -->
-    <canvas id="profileCanvas" height = "76" style = "left:20vw; top:100px; position:absolute;"></canvas>
+    <canvas id="profileCanvas" height = "76" style = "left:20vw; top:100px; position:absolute; border:0px solid #000000;"></canvas>
     <hr id="dividerThing" style="width:58vw; margin-left:21vw; margin-top:196px;">
     <canvas id="blurbCanvas" height = "76" style = "left:20vw; top:216px; position:absolute;"></canvas><!--do-->
-    <canvas id="videoBackground" style = "left:20vw; top:300px; position:absolute; border:1px solid #000000;"></canvas><!--do-->
-    <canvas id="contactBackground" style = "left:20vw; top:300px; position:absolute; border:1px solid #000000;"></canvas><!--do-->
-    <canvas id="athleticBackground" style = "left:20vw; top:300px; position:absolute; border:1px solid #000000;"></canvas><!--do-->
-    <canvas id="linksBackground" style = "left:20vw; top:300px; position:absolute; border:1px solid #000000;"></canvas><!--do-->
+    <canvas id="videoBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
+    <canvas id="contactBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
+    <canvas id="athleticBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
+    <canvas id="linksBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
 
-    <canvas hidden id="descriptionBackground" style = "left:30vw; top:20vh; position:absolute; border:1px solid #000000;"></canvas><!--do-->
+    <canvas hidden id="descriptionBackground" style = "left:30vw; top:20vh; position:absolute; border:0px solid #000000;"></canvas><!--do-->
     <button hidden id="hideButton" style = "left:70vw; top:20vh; position:absolute;"></button><!--do-->
 
     <script src="settings.js"></script>
@@ -83,6 +83,7 @@
             //location.reload(true);
         });
         window.onload = function(){
+            window.scrollTo(0, 0);
             scaleW = vwToPxNum(100)/1920;
             //alert(scaleW);
             document.getElementById("pageTitle").innerHTML = name + "'s Profile";
@@ -175,6 +176,15 @@
             ctx.fillText(name,84,33);
             ctx.font = "12px Verdana";
             ctx.fillText(positions,85,52);
+
+
+            //GOHERE
+            if(!mobile){
+                createRoundRect(0,0,vwToPx(100),280,0);
+            }
+            else{
+                createRoundRect(0,0,vwToPx(140),495,0);
+            }
         }
 
         function doBlurb(scaleW){
@@ -202,8 +212,10 @@
             else{
                 canv.height = 1000;
                 for(var i = 0; i < blurbInfo.length;i++){
+                    ctx.fillStyle = "#000000";
                     ctx.font = "18px Verdana";
                     ctx.fillText(blurbInfo[i],0,22+offset);
+                    ctx.fillStyle = "#9a9ca9";
                     ctx.font = "14px Verdana";
                     ctx.fillText(blurbInfoType[i],0,42+offset);
                     
@@ -218,7 +230,7 @@
         function doVideos(lastEnd,scaleW){
             canv.height = (Math.floor(videoAmnt/3)+1)*260+40;
             ctx.font = "30px Verdana";
-            ctx.fillText("Videos",10,25)
+            ctx.fillText("Videos",10,30)
 
             newLinkSnippet("Youtube Page",youtubePage,lastEnd+265+"px",vwToPx(20)+"px","Youtube Page");
 
@@ -252,6 +264,8 @@
 
                     current.style = "left:"+temp+"px; top:"+temp2+"px; position:absolute;";
                     current.style.height = Math.floor(200*scaleW)+"px";
+
+                    createRoundRect(temp,temp2-35,vwToPxNum(19), 235,10);
                 }
                 else{
                     row = i-1;
@@ -261,9 +275,10 @@
                     temp2 = 385-76 +20+ 260*row+lastEnd;
 
                     current.style = "left:"+temp+"px; height:200px; top:"+temp2+"px; position:absolute;";
+
+                    createRoundRect(temp,temp2-35,vwToPxNum(80), 235,10);
                 }
                 
-
                 
                 
                 current.style.width = "auto";
@@ -276,7 +291,7 @@
 
                 /*----------Titles----------*/
                 
-                current = newTextSnippet(videoTitles[i-1],20+20*(col)+"vw",lastEnd+340-76 +20+ scaleW*260*row+  (20-Math.floor(scaleW*20))+"px",Math.floor(scaleW*20)+"px")
+                current = newTextSnippet(videoTitles[i-1],addVwPxNumInPx(20+20*(col),10)+"px",lastEnd+340-76 +20+ scaleW*260*row+  (20-Math.floor(scaleW*20))+"px",Math.floor(scaleW*20)+"px")
                 current.innerHTML = videoTitles[i-1].substring(0,25);
                 if(mobile){
                     current.style.top=lastEnd+340-76 +20+ 260*row+"px";
@@ -392,47 +407,85 @@
             if(mobile){
                 current.style.left="20vw";
                 current.style.top = lastEnd+280+"px";
-                current.style.width = "60vw";
+                current.style.width = "100vw";
             }
+            
+            if(!mobile){
+                /*----------Guardian 1----------*/
+                current = newTextSnippet("Guardian 1","70vw",lastEnd+10+"px","22px")
+                current.innerHTML = "Guardian 1";
+                document.body.appendChild(current);
 
-            /*----------Guardian 1----------*/
+                current = newTextSnippet(g1Name,"70vw",lastEnd+45+"px","16px")
+                current.innerHTML = g1Name;
+                document.body.appendChild(current);
 
-            current = newTextSnippet("Guardian 1","70vw",lastEnd+10+"px","22px")
-            current.innerHTML = "Guardian 1";
-            document.body.appendChild(current);
+                newLinkSnippet("Guardian 1 Email",g1Email,lastEnd+85+"px","70vw",g1Email.substring(7));
+                phoneOld = g1Phone.substring(4);
+                phoneNew = "("+phoneOld.substring(0,3)+") "+phoneOld.substring(3,6)+"-"+phoneOld.substring(6);
+                newLinkSnippet("Guardian 1 Phone",g1Phone,lastEnd+105+"px","70vw",phoneNew);
 
-            current = newTextSnippet(g1Name,"70vw",lastEnd+45+"px","16px")
-            current.innerHTML = g1Name;
-            document.body.appendChild(current);
+                var offset = 120;
 
-            newLinkSnippet("Guardian 1 Email",g1Email,lastEnd+85+"px","70vw",g1Email.substring(7));
-            phoneOld = g1Phone.substring(4);
-            phoneNew = "("+phoneOld.substring(0,3)+") "+phoneOld.substring(3,6)+"-"+phoneOld.substring(6);
-            newLinkSnippet("Guardian 1 Phone",g1Phone,lastEnd+105+"px","70vw",phoneNew);
+                /*----------Guardian 2----------*/
 
-            var offset = 120;
+                current = newTextSnippet("Guardian 2","70vw",lastEnd+10+offset+"px","22px")
+                current.innerHTML = "Guardian 2";
+                document.body.appendChild(current);
 
-            /*----------Guardian 2----------*/
+                current = newTextSnippet(g2Name,"70vw",lastEnd+45+offset+"px","16px")
+                current.innerHTML = g2Name;
+                document.body.appendChild(current);
 
-            current = newTextSnippet("Guardian 2","70vw",lastEnd+10+offset+"px","22px")
-            current.innerHTML = "Guardian 2";
-            document.body.appendChild(current);
+                newLinkSnippet("Guardian 2 Email",g1Email,lastEnd+85+offset+"px","70vw",g2Email.substring(7));
+                phoneOld = g2Phone.substring(4);
+                phoneNew = "("+phoneOld.substring(0,3)+") "+phoneOld.substring(3,6)+"-"+phoneOld.substring(6);
+                newLinkSnippet("Guardian 2 Phone",g1Phone,lastEnd+105+offset+"px","70vw",phoneNew);
+            }
+            else{
+                /*----------Guardian 1----------*/
+                current = newTextSnippet("Guardian 1","100vw",lastEnd+10+"px","22px")
+                current.innerHTML = "Guardian 1";
+                current.style.whiteSpace="nowrap";
+                document.body.appendChild(current);
 
-            current = newTextSnippet(g2Name,"70vw",lastEnd+45+offset+"px","16px")
-            current.innerHTML = g2Name;
-            document.body.appendChild(current);
+                current = newTextSnippet(g1Name,"100vw",lastEnd+45+"px","16px")
+                current.innerHTML = g1Name;
+                current.style.whiteSpace="nowrap";
+                document.body.appendChild(current);
 
-            newLinkSnippet("Guardian 2 Email",g1Email,lastEnd+85+offset+"px","70vw",g2Email.substring(7));
-            phoneOld = g2Phone.substring(4);
-            phoneNew = "("+phoneOld.substring(0,3)+") "+phoneOld.substring(3,6)+"-"+phoneOld.substring(6);
-            newLinkSnippet("Guardian 2 Phone",g1Phone,lastEnd+105+offset+"px","70vw",phoneNew);
+                newLinkSnippet("Guardian 1 Email",g1Email,lastEnd+85+"px","100vw",g1Email.substring(7));
+                phoneOld = g1Phone.substring(4);
+                phoneNew = "("+phoneOld.substring(0,3)+") "+phoneOld.substring(3,6)+"-"+phoneOld.substring(6);
+                newLinkSnippet("Guardian 1 Phone",g1Phone,lastEnd+105+"px","100vw",phoneNew);
+
+                var offset = 120;
+
+                /*----------Guardian 2----------*/
+
+                current = newTextSnippet("Guardian 2","100vw",lastEnd+10+offset+"px","22px")
+                current.innerHTML = "Guardian 2";
+                current.style.whiteSpace="nowrap";
+                document.body.appendChild(current);
+
+                current = newTextSnippet(g2Name,"100vw",lastEnd+45+offset+"px","16px")
+                current.innerHTML = g2Name;
+                current.style.whiteSpace="nowrap";
+                document.body.appendChild(current);
+
+                newLinkSnippet("Guardian 2 Email",g1Email,lastEnd+85+offset+"px","100vw",g2Email.substring(7));
+                phoneOld = g2Phone.substring(4);
+                phoneNew = "("+phoneOld.substring(0,3)+") "+phoneOld.substring(3,6)+"-"+phoneOld.substring(6);
+                newLinkSnippet("Guardian 2 Phone",g1Phone,lastEnd+105+offset+"px","100vw",phoneNew);
+            }
+            
         
             /*----------Other----------*/
-
+            var oldLastEnd = lastEnd;
             var guardiansHeight = lastEnd+offset+105+16;
             var statementHeight = (calculateLines(personalStatement,vwToPxNum(30)*scaleW*1.2,16)+1)*18 +40+lastEnd;
             if(mobile){
-                statementHeight = (calculateLines(personalStatement,vwToPxNum(60),16)+1)*18 +280+lastEnd;
+                statementHeight = (calculateLines(personalStatement,vwToPxNum(100),16)+1)*18 +280+lastEnd;
             }
             
             if(guardiansHeight>statementHeight){
@@ -444,6 +497,25 @@
             var test = canv.style.top;
             test = test.substring(0,test.length-2);
             canv.height = lastEnd-test;
+
+            if (!mobile){
+                createRoundRect(vwToPxNum(20)-5,oldLastEnd-5,vwToPxNum(60),canv.height-20,10);
+            }
+            else{
+                createRoundRect(vwToPxNum(20)-5,oldLastEnd-5,vwToPxNum(100)+80,canv.height-20,10);
+            }
+
+
+
+            if(!mobile){
+                createRoundRect(vwToPxNum(21)-5,lastEnd+105,vwToPxNum(29),155,10);
+                createRoundRect(vwToPxNum(51)-5,lastEnd+105,vwToPxNum(29),155,10);
+            }
+            else{
+                createRoundRect(vwToPxNum(21)-5,lastEnd+105,vwToPxNum(119),155,10);
+                createRoundRect(vwToPxNum(21)-5,lastEnd+265,vwToPxNum(119),155,10);
+            }
+            
 
             /*----------Draw AFTER resizing----------*/
 
@@ -476,7 +548,12 @@
             if(mobile){
                 canv.height+=210;
             }
-            canv.width = vwToPxNum(80);
+            if(!mobile){
+                canv.width = vwToPxNum(60);
+            }
+            else{
+                canv.width = vwToPxNum(120);
+            }
             //+16*calculateLines();
             ctx.font = "30px Verdana";
             ctx.fillText("Athletic Information",10,25);
@@ -631,6 +708,14 @@
         function doStats(mobileOffset,scaleW,canvasEnd,lastEnd){
             //alert(lastEnd);
             if(!mobile){
+                createRoundRect(vwToPxNum(20)-5,lastEnd-10+mobileOffset,vwToPxNum(60),580-mobileOffset,10);
+            }
+            else{
+                createRoundRect(vwToPxNum(20)-5,lastEnd-10+mobileOffset,vwToPxNum(120),580-mobileOffset,10);
+            }
+
+
+            if(!mobile){
                 ctx.drawImage(document.getElementById("positionGraphic"),0,canvasEnd);
 
                 /*----------Positions----------*/
@@ -699,6 +784,8 @@
             if(!mobile){
                 /*----------Additional Stats-----------*/
 
+                createRoundRect(vwToPxNum(20),lastEnd+90,vwToPxNum(20)-10,measureAthleticBox()*20,10);
+
                 ctx.font = "18px Verdana";
                 ctx.fillText("Additional Stats",20,940);
                 
@@ -710,6 +797,8 @@
 
                 /*----------Athletic Honors-----------*/
 
+                createRoundRect(vwToPxNum(40),lastEnd+90,vwToPxNum(20)-10,measureAthleticBox()*20,10);
+
                 ctx.font = "18px Verdana";
                 ctx.fillText("Athletic Honors",addVwPxNumInPx(20,20),940);
 
@@ -720,6 +809,8 @@
 
 
                 /*----------Other Sports/Activities-----------*/
+
+                createRoundRect(vwToPxNum(60),lastEnd+90,vwToPxNum(20)-10,measureAthleticBox()*20,10);
 
                 ctx.font = "18px Verdana";
                 ctx.fillText("Other Sports/Activities",addVwPxNumInPx(40,20),940);
@@ -739,13 +830,15 @@
                 current.style.position = "absolute";
                 current.style.top = 120+lastEnd+"px";
                 current.style.left = addVwPxNum(20,20)+"vw";
-                current.style.width = "60vw";
+                current.style.width = "100vw";
 
                 var textthingie="";
                 for(var i = 0; i < additionalStats.length;i++){
                     textthingie+=additionalStats[i]+"\n";
                 }
-                var helpme = calculateLines(textthingie,vwToPxNum(60),20)*20+40;
+                var helpme = calculateLines(textthingie,vwToPxNum(100),20)*20+40;
+
+                createRoundRect(vwToPxNum(20),lastEnd+90,vwToPxNum(120),helpme,10);
 
 
                 /*----------Athletic Honors-----------*/
@@ -757,29 +850,37 @@
                 current.style.position = "absolute";
                 current.style.top = 120+lastEnd+helpme+"px";
                 current.style.left = addVwPxNum(20,20)+"vw";
-                current.style.width = "60vw";
+                current.style.width = "100vw";
 
                 textthingie="";
                 for(var i = 0; i < athleticHonors.length;i++){
                     textthingie+=athleticHonors[i]+"\n";
                 }
-                helpme += calculateLines(textthingie,vwToPxNum(60),20)*20+40;
+                var helpMeOld = helpme;
+                helpme += calculateLines(textthingie,vwToPxNum(100),20)*20+40;
+
+                createRoundRect(vwToPxNum(20),lastEnd+90+helpMeOld,vwToPxNum(120),helpme-helpMeOld+140*scaleW,10);
+                
                 /*----------Other Sports/Activities-----------*/
 
                 ctx.font = "18px Verdana";
-                ctx.fillText("Other Sports/Activities",20,940+helpme);
+                //alert(scaleW);
+                ctx.fillText("Other Sports/Activities",20,140*scaleW+960+helpme);
 
                 current = document.getElementById("otherSports");
                 current.style.position = "absolute";
-                current.style.top = 120+lastEnd+helpme+"px";
+                current.style.top = 140*scaleW + 140+lastEnd+helpme+"px";
                 current.style.left = addVwPxNum(20,20)+"vw";
-                current.style.width = "60vw";
+                current.style.width = "100vw";
 
                 textthingie="";
                 for(var i = 0; i < otherSports.length;i++){
                     textthingie+=otherSports[i]+"\n";
                 }
-                helpme += calculateLines(textthingie,vwToPxNum(60),20)*20+40;
+                helpMeOld = helpme;
+                helpme += calculateLines(textthingie,vwToPxNum(100),20)*20+40;
+
+                createRoundRect(vwToPxNum(20),lastEnd+90+helpMeOld+140*scaleW,vwToPxNum(120),helpme-helpMeOld+40,10);
             }
 
             
@@ -794,14 +895,15 @@
             if(!mobile){
                 current.style.top = lastEnd+
                 (Math.floor((pressLinks.length-1)/5)*40+106)+
-                (eventNames.length)*40+90+260
+                (eventNames.length)*40+90+260+160+20
                 +"px";
             }
             else{
                 current.style.top = lastEnd+
-                (Math.floor((pressLinks.length-1)/5)*80+106)+
-                (eventNames.length)*80+90+260+130
+                (Math.floor((pressLinks.length-1)/5)*100+106)+
+                (eventNames.length)*100+90+260+130+20+100+20
                 +"px";
+                current.style.width = "100vw";
             }
 
 
@@ -827,10 +929,12 @@
                 var row = i;//i
                 var col = 0;
                 if(!mobile){
-                    newLinkSnippet(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*40+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
+                    newLinkSnippetWrap(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*40+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
+                    createRoundRect(vwToPxNum(20+col*12+1)-5,lastEnd+60+row*40-5,vwToPxNum(60)+10,30,10);
                 }
                 else{
-                    newLinkSnippet(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*80+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
+                    newLinkSnippetWrap(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*80+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
+                    createRoundRect(vwToPxNum(20+col*12+1)-5,lastEnd+60+row*80-5,vwToPxNum(120)+10,50,10);
                 }
             }
             lastEnd += canv.height-hOffset;
@@ -840,10 +944,10 @@
 
             ctx.font = "20px Verdana";
             if(!mobile){
-                ctx.fillText("Events",10,25+Math.floor((pressLinks.length-1))*40+100);
+                ctx.fillText("Events",10,35+Math.floor((pressLinks.length-1))*40+100);
             }
             else{
-                ctx.fillText("Events",10,25+Math.floor((pressLinks.length-1))*80+100);
+                ctx.fillText("Events",10,35+Math.floor((pressLinks.length-1))*80+100);
             }
             
 
@@ -851,27 +955,29 @@
             current.innerHTML = "Name";
             document.body.appendChild(current);
             if(!mobile){
-            current = newTextSnippet("Date",addVwPxNumInPx(40,70)+"px",lastEnd+34+"px","16px")
-            current.innerHTML = "Date";
-            document.body.appendChild(current);
+                current = newTextSnippet("Date",addVwPxNumInPx(40,70)+"px",lastEnd+34+"px","16px")
+                current.innerHTML = "Date";
+                document.body.appendChild(current);
 
-            current = newTextSnippet("Location","60vw",lastEnd+34+"px","16px")
-            current.innerHTML = "Location";
-            document.body.appendChild(current);
+                current = newTextSnippet("Location","60vw",lastEnd+34+"px","16px")
+                current.innerHTML = "Location";
+                document.body.appendChild(current);
             }
             else{
-            current = newTextSnippet("Date",addVwPxNumInPx(80,70)+"px",lastEnd+34+"px","16px")
-            current.innerHTML = "Date";
-            document.body.appendChild(current);
+                current = newTextSnippet("Date",addVwPxNumInPx(80,70)+"px",lastEnd+34+"px","16px")
+                current.innerHTML = "Date";
+                document.body.appendChild(current);
 
-            current = newTextSnippet("Location","120vw",lastEnd+34+"px","16px")
-            current.innerHTML = "Location";
-            document.body.appendChild(current);
+                current = newTextSnippet("Location","120vw",lastEnd+34+"px","16px")
+                current.innerHTML = "Location";
+                document.body.appendChild(current);
             }
             
 
             for(var i = 0; i < eventNames.length;i++){
                 if(!mobile){
+                    createRoundRect(vwToPxNum(21)-5,lastEnd+(i+1)*40+45,vwToPxNum(60)+10,30,10);
+
                     newLinkSnippet(eventLinks[i], eventLinks[i], lastEnd+(i+1)*40+50+"px", "21vw", eventNames[i]);
 
                     var current = newTextSnippet("Date"+i,addVwPxNumInPx(40,70)+"px",lastEnd+(i+1)*40+34+"px","16px")
@@ -883,6 +989,8 @@
                     document.body.appendChild(current);
                 }
                 else{
+                    createRoundRect(vwToPxNum(21)-5,lastEnd+(i+1)*80+45,vwToPxNum(120)+10,70,10);
+
                     newLinkSnippet(eventLinks[i], eventLinks[i], lastEnd+(i+1)*80+50+"px", "21vw", eventNames[i]);
 
                     var current = newTextSnippet("Date"+i,addVwPxNumInPx(80,70)+"px",lastEnd+(i+1)*80+34+"px","16px")
@@ -905,37 +1013,47 @@
                 newStart = Math.floor((pressLinks.length-1))*80+106;
                 newStart += (eventNames.length)*80+100;
             }
+
             ctx.font = "30px Verdana";
-            ctx.fillText("Academics",10,25+newStart);
+            ctx.fillText("Academics",10,25+newStart+20);
 
             ctx.font = "20px Verdana";
-            ctx.fillText("Academic Status",10,25+newStart+40);
+            ctx.fillText("Academic Status",10,25+newStart+40+20);
 
             if(!mobile){
-                statSnippet(ctx,newStart, blurbInfo[5], "GPA (weighted)", 20, newStart-210);
-                statSnippet(ctx,newStart, blurbInfo[0], "Class Year", addVwPxNumInPx(20,20), newStart-210);
+                statSnippet(ctx,newStart, blurbInfo[5], "GPA (weighted)", 20, newStart-370+20);
+                statSnippet(ctx,newStart, blurbInfo[0], "Class Year", addVwPxNumInPx(20,20), newStart-370+20);
                 if(major == null){
-                    statSnippet(ctx,newStart, "Undecided", "Intended Major", addVwPxNumInPx(40,20), newStart-210);
+                    statSnippet(ctx,newStart, "Undecided", "Intended Major", addVwPxNumInPx(40,20), newStart-370+20);
                 }else{
-                    statSnippet(ctx,newStart, major, "Intended Major", addVwPxNumInPx(40,20), newStart-210);
+                    statSnippet(ctx,newStart, major, "Intended Major", addVwPxNumInPx(40,20), newStart-370+20);
                 }
             }
             else{
-                statSnippet(ctx,newStart, blurbInfo[5], "GPA (weighted)", 20, newStart-486);
-                statSnippet(ctx,newStart, blurbInfo[0], "Class Year", 190, newStart-486);
+                statSnippet(ctx,newStart, blurbInfo[5], "GPA (weighted)", 20, newStart-486-160+20);
+                statSnippet(ctx,newStart, blurbInfo[0], "Class Year", 190, newStart-486-160+20);
                 if(major == null){
-                    statSnippet(ctx,newStart, "Undecided", "Intended Major", 300, newStart-486);
+                    statSnippet(ctx,newStart, "Undecided", "Intended Major", 300, newStart-486-160+20);
                 }else{
-                    statSnippet(ctx,newStart, major, "Intended Major", addVwPxNumInPx(40,20), newStart-486);
+                    statSnippet(ctx,newStart, major, "Intended Major", addVwPxNumInPx(40,20), newStart-486-160+20);
                 }
             }
             
             ctx.fillStyle = "#000000";
             ctx.font = "20px Verdana";
-            ctx.fillText("Additional Info",10,newStart+180);
+            ctx.fillText("Additional Info",10,newStart+180+20);
 
             ctx.font = "20px Verdana";
-            ctx.fillText("Academic Honors",20,25+newStart+210);
+            ctx.fillText("Academic Honors",20,25+newStart+210+20);
+
+            if(!mobile){
+                createRoundRect(vwToPxNum(21)-5,newStart+lastEnd-1200+20,vwToPxNum(60)+10,70,10);
+                createRoundRect(vwToPxNum(21)-5,newStart+lastEnd-1200+20+170,vwToPxNum(60)+10,70,10);
+            }
+            else{
+                createRoundRect(vwToPxNum(21)-5,newStart+lastEnd-1700+40,vwToPxNum(120)+10,70,10);
+                createRoundRect(vwToPxNum(21)-5,newStart+lastEnd-1700+40+170,vwToPxNum(120)+10,70,10);
+            }
         }
 
 
@@ -980,13 +1098,13 @@
             var lines3 = 0;
             
             for(var i = 0;i<additionalStats.length;i++){
-                lines1+= calculateLines(additionalStats[i], vwToPxNum(60), 22);
+                lines1+= calculateLines(additionalStats[i], vwToPxNum(100), 22);
             }
             for(var i = 0;i<athleticHonors.length;i++){
-                lines2+= calculateLines(athleticHonors[i], vwToPxNum(60), 22);
+                lines2+= calculateLines(athleticHonors[i], vwToPxNum(100), 22);
             }
             for(var i = 0;i<otherSports.length;i++){
-                lines3+= calculateLines(otherSports[i], vwToPxNum(60), 22);
+                lines3+= calculateLines(otherSports[i], vwToPxNum(100), 22);
             }
 
             return lines1+lines2+lines3;
@@ -998,7 +1116,18 @@
 
 
 
-
+        function createRoundRect(x,y,width,height,radius){
+            var rect = document.createElement("p");
+            rect.style.left = x+"px";
+            rect.style.top = y-15+"px";
+            rect.style.width = width+"px";
+            rect.style.height = height+"px";
+            rect.style.backgroundColor = "#ffffff";
+            rect.style.borderRadius = radius+"px";
+            rect.style.position = "absolute";
+            rect.style.zIndex = "-100";
+            document.body.appendChild(rect);
+        }
 
         function statSnippet(ctx, canvasEnd, statVal, statType, posX, posY){
             ctx.fillStyle = "#000000";
@@ -1028,6 +1157,21 @@
         }
 
         function newLinkSnippet(title,href,top,left,contents){
+            var text = document.createElement("a");
+            text.title = title;
+            text.href = href;
+            text.style.whiteSpace="nowrap";
+            text.style.top = top;
+            text.style.left = left;
+            text.style.position = "absolute";
+
+            var link = document.createTextNode(contents);
+            text.appendChild(link);
+            document.body.appendChild(text);
+
+        }
+
+        function newLinkSnippetWrap(title,href,top,left,contents){
             var text = document.createElement("a");
             text.title = title;
             text.href = href;
