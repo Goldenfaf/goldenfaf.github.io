@@ -17,7 +17,7 @@
     <canvas id="videoBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
     <canvas id="contactBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
     <canvas id="athleticBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
-    <canvas id="linksBackground" style = "left:20vw; top:300px; position:absolute; border:0px solid #000000;"></canvas><!--do-->
+    <canvas id="linksBackground" style = "left:20vw; top:300px; position:absolute; border:1px solid #000000;"></canvas><!--do-->
 
     <canvas hidden id="descriptionBackground" style = "left:30vw; top:20vh; position:absolute; border:0px solid #000000;"></canvas><!--do-->
     <button hidden id="hideButton" style = "left:70vw; top:20vh; position:absolute;"></button><!--do-->
@@ -765,8 +765,8 @@
             }
             else{
                 current.style.top = lastEnd+
-                (Math.floor((pressLinks.length-1)/5)*40+106)+
-                (eventNames.length)*80+90+260
+                (Math.floor((pressLinks.length-1)/5)*80+106)+
+                (eventNames.length)*80+90+260+130
                 +"px";
             }
 
@@ -782,7 +782,7 @@
                 hOffset = (eventNames.length)*40+90    +500;
             }
             else{
-                canv.height = (Math.floor((pressLinks.length-1))*40+106);
+                canv.height = (Math.floor((pressLinks.length-1))*80+106);
                 hOffset = (eventNames.length)*80+90    +500;
             }
             canv.height += hOffset;
@@ -792,7 +792,12 @@
             for(var i = 0; i < pressLinks.length;i++){
                 var row = i;//i
                 var col = 0;
-                newLinkSnippet(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*40+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
+                if(!mobile){
+                    newLinkSnippet(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*40+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
+                }
+                else{
+                    newLinkSnippet(pressLinksTitles[i], pressLinks[i], lastEnd+60+row*80+"px", 20+col*12+1+"vw", pressLinksTitles[i]);
+                }
             }
             lastEnd += canv.height-hOffset;
 
@@ -800,12 +805,27 @@
             /*----------Events----------*/
 
             ctx.font = "20px Verdana";
-            ctx.fillText("Events",10,25+Math.floor((pressLinks.length-1))*40+100);
+            if(!mobile){
+                ctx.fillText("Events",10,25+Math.floor((pressLinks.length-1))*40+100);
+            }
+            else{
+                ctx.fillText("Events",10,25+Math.floor((pressLinks.length-1))*80+100);
+            }
+            
 
             var current = newTextSnippet("Name","21vw",lastEnd+34+"px","16px")
             current.innerHTML = "Name";
             document.body.appendChild(current);
+            if(!mobile){
+            current = newTextSnippet("Date",addVwPxNumInPx(40,70)+"px",lastEnd+34+"px","16px")
+            current.innerHTML = "Date";
+            document.body.appendChild(current);
 
+            current = newTextSnippet("Location","60vw",lastEnd+34+"px","16px")
+            current.innerHTML = "Location";
+            document.body.appendChild(current);
+            }
+            else{
             current = newTextSnippet("Date",addVwPxNumInPx(80,70)+"px",lastEnd+34+"px","16px")
             current.innerHTML = "Date";
             document.body.appendChild(current);
@@ -813,16 +833,18 @@
             current = newTextSnippet("Location","120vw",lastEnd+34+"px","16px")
             current.innerHTML = "Location";
             document.body.appendChild(current);
+            }
+            
 
             for(var i = 0; i < eventNames.length;i++){
                 if(!mobile){
                     newLinkSnippet(eventLinks[i], eventNames[i], lastEnd+(i+1)*40+50+"px", "21vw", eventNames[i]);
 
-                    var current = newTextSnippet("Date"+i,addVwPxNumInPx(80,70)+"px",lastEnd+(i+1)*40+34+"px","16px")
+                    var current = newTextSnippet("Date"+i,addVwPxNumInPx(40,70)+"px",lastEnd+(i+1)*40+34+"px","16px")
                     current.innerHTML = eventDates[i];
                     document.body.appendChild(current);
 
-                    current = newTextSnippet("Location"+i,"120vw",lastEnd+(i+1)*40+34+"px","16px")
+                    current = newTextSnippet("Location"+i,"60vw",lastEnd+(i+1)*40+34+"px","16px")
                     current.innerHTML = eventLocations[i];
                     document.body.appendChild(current);
                 }
@@ -840,13 +862,13 @@
                 
             }
             lastEnd += canv.height;
-
-            var newStart = Math.floor((pressLinks.length-1))*40+106;
-            
+            var newStart;
             if(!mobile){
+                newStart = Math.floor((pressLinks.length-1))*40+106;
                 newStart += (eventNames.length)*40+100;
             }
             else{
+                newStart = Math.floor((pressLinks.length-1))*80+106;
                 newStart += (eventNames.length)*80+100;
             }
             ctx.font = "30px Verdana";
@@ -912,13 +934,13 @@
             var lines3 = 0;
             
             for(var i = 0;i<additionalStats.length;i++){
-                lines1+= calculateLines(additionalStats[i], vwToPxNum(60), 20);
+                lines1+= calculateLines(additionalStats[i], vwToPxNum(60), 22);
             }
             for(var i = 0;i<athleticHonors.length;i++){
-                lines2+= calculateLines(athleticHonors[i], vwToPxNum(60), 20);
+                lines2+= calculateLines(athleticHonors[i], vwToPxNum(60), 22);
             }
             for(var i = 0;i<otherSports.length;i++){
-                lines3+= calculateLines(otherSports[i], vwToPxNum(60), 20);
+                lines3+= calculateLines(otherSports[i], vwToPxNum(60), 22);
             }
 
             return lines1+lines2+lines3;
