@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Softball Profile Browser</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+</head>
+<body>
+    <canvas id="canv" height = "100" style = "left:0px; top:100px; position:absolute;"></canvas>
+    <script src="profiles.js"></script>
+    <script>
+        var canv;
+        var ctx;
+        window.onload = function(){
+            canv = document.getElementById("canv");
+            canv.width = vwToPxNum(100);
+            ctx = canv.getContext("2d");
+            
+            var leftStart = vwToPxNum(10);
+            
+            ctx.font = "20px Verdana";
+            ctx.fillText("Softball Profiles",leftStart,20);
+
+            var linksStart= 150;
+            var offset = 0;
+
+            for(var i = 0;i<pageNames.length;i++){
+                createLink(leftStart,linksStart+offset,cosmeticNames[i],pageNames[i]);
+                offset+= 20;
+            }
+        }
+        
+        
+
+
+
+
+        function createLink(x,y,cosmeticName,pageName){
+            var text = document.createElement("a");
+            text.title = cosmeticName;
+            text.href = "goldenfaf.github.io/"+pageName;
+            text.style.top = y+"px";
+            text.style.left = x+"px";
+            text.style.position = "absolute";
+
+            var link = document.createTextNode(cosmeticName);
+            text.appendChild(link);
+            document.body.appendChild(text);
+        }
+
+        function vwToPxNum(vw){
+            return ((vw*window.innerWidth)/100);
+        }
+
+        function vhToPxNum(vh){
+            return ((vh*window.innerHeight)/100); 
+        }
+    </script>
+</body>
+</html>
