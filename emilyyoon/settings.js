@@ -4,14 +4,42 @@ var positions = "P, UTL, 1B";
 var blurbInfo = ["2028", "Fullerton, CA", "BSC Bengals - Briggs 14U-R, BSC Bengals", "5'6\"", "115lbs", "4.78/4.83"];
 var blurbInfoType = ["Grad Year", "Hometown", "Club", "Height", "Weight", "GPA(Weighted/Unweighted)"];
 
-var videoAmnt = 4;
+var videoAmnt = 14;
 
 var youtubePage = "https://www.youtube.com/@emilyyoon2028";
 
-var videoTitles = ["Video 1"
-,"Video 2"
-,"Banana"
-,"Video 4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  a"
+var videoTitles = [
+        "1. 8.25 Strikeout Compliation.mov",
+        "2. 8.25 Last inning vs Bolts in Elim Game (6-5 lead).mov",
+        "3. 8.25 PGF Defensive Plays .mov",
+        "4. 11.24 6Ks 4IP - v. Impact Gold (Super Elite Divison - Bombers Exposure).mp4",
+        "5. 6.25 vs Beverly Bandits @ Top Gun Invitational.mp4",
+        "6. 5.25 Two strkie change-up and curve combo for K 4",
+        "7. 7.25 Coming into bases loaded 0 outs situation. IDT.mp4",
+        "8. 12.24 21K's in 7IP at USA Softball HPP NSE (last 9 Ks here).mp4",
+        "9. 2.25 No HItter! -First Varisty HS Game is a no hitter.mp4",
+        "10. 7.24 PGF Nationals vs. UNITY (2027 Amsler Johnson) Ks only.mp4",
+        "11. 7.23 PFG Nationals Strikeout Compilation.mp4",
+        "12. 4.25 Some Ks and two pitch sequence Ks vs. La Habra.mp4",
+        "13. 4.25 A few swigns at home field.mp4",
+        "14. 4.25 BP Session @ Cal State Fullerton.mp4"
+]
+
+var videoLinks = [
+        "https://www.dropbox.com/scl/fi/wgjvpp0qv1je57e3t8w3w/1.-8.25-PGF-Strikeout-Compliation.mov?rlkey=1uauq3z98qyeqpws3sxv2j1wa&st=kmn2amal&raw=1",
+        "https://www.dropbox.com/scl/fi/5mxupepvpkdsv3wehi7cx/2.-8.25-Last-inning-vs-Bolts-in-Elim-Game-6-5-lead.mov?rlkey=osyozxl79pbupc1v4lp9qg0g9&st=nzm6kva9&raw=1",
+        "https://www.dropbox.com/scl/fi/zc8ze3j66t5czz6bcf7jz/3.-8.25-PGF-Defensive-Plays.mov?rlkey=be0wkp3kblxfhvhkk0ktzlxgk&st=4wzvvvi9&raw=1",
+        "https://www.dropbox.com/scl/fi/vuve5kccfjozu7uk3w9vx/4.-11.24-6Ks-4IP-v.-Impact-Gold-Super-Elite-Division-Bombers-Exposure.mp4?rlkey=50mmnr9ik9s234crarvsldyvq&st=721aghlb&raw=1",
+        "https://www.dropbox.com/scl/fi/2iwivs72a4awqfrafxfn7/5.-6.25-vs-Beverly-Bandits-Top-Gun-Invitiational.mp4?rlkey=8es1k8xa8tywi9nkdh4hwhmkk&st=wz7b21cy&raw=1",
+        "https://www.dropbox.com/scl/fi/fazl4jb8h5r4qyhi31wpg/6.-5.25-Two-strike-change-up-and-curve-combo-for-K-4.mp4?rlkey=naf64hv8nik6z8qvh6rx3src4&st=9nsbpa57&raw=1",
+        "https://www.dropbox.com/scl/fi/4g9xlh3voik3ixtcyoun8/7.-7.25-Coming-into-bases-loaded-0-outs-situation.-IDT.mp4?rlkey=maovp0fic2fok80l0w7oxmir1&st=c0v3ig1f&raw=1",
+        "https://www.dropbox.com/scl/fi/8cfewvnxyaowctrm6zn2x/8.-12.24-21K-s-in-7IP-at-USA-Softball-HPP-NSE-last-9-Ks-here.mp4?rlkey=lli776uvq3jji2ul8qulsr162&st=79xbtl1n&raw=1",
+        "https://www.dropbox.com/scl/fi/5l6rew0zgi638fwuavne0/9.-2.25-No-Hitter-First-Varsity-HS-Game-is-a-no-hitter.mp4?rlkey=a1ctnvmo0tsqefx9pe8ck12wh&st=x9vzudf5&raw=1",
+        "https://www.dropbox.com/scl/fi/3y39via1cym5vbiljgob4/10.-7.24-PGF-Nationals-vs.-UNITY-2027-Amsler-Johnson-Ks-only.mp4?rlkey=gdwm0lnjxxhq0djon060c36e2&st=zsrs5kpu&raw=1",
+        "https://www.dropbox.com/scl/fi/d4ky0rwjpg7omvbjw3spk/11.-7.23-PFG-Nationals-Strikeout-Compilation.mp4?rlkey=om6ogs6yj6q00aggj6vtedngt&st=63f21d3d&raw=1",
+        "https://www.dropbox.com/scl/fi/8bwduwf4fz91be840ooty/12.-4.25-Some-Ks-and-two-pitch-sequence-Ks-vs.-La-Habra.mp4?rlkey=9eveyja4kwt138w27ahp0lis5&st=r3fscfds&raw=1",
+        "https://www.dropbox.com/scl/fi/1m7iz452x65giryap14fm/13.-4.25-A-few-swings-at-home-field.mp4?rlkey=7fj60ajpmudit4ehmo2ek50xr&st=58ngdbcm&raw=1",
+        "https://www.dropbox.com/scl/fi/b4udqdxa40wjldin7kfzp/14.-4.25-BP-Session-Cal-State-Fullerton.mp4?rlkey=g1bg7d674fm03fk07kq2k0qeg&st=t7vfvyz8&raw=1"
 ]
 
 var videoDescriptions = ["I like cheeseI like cheeseI like cheeseI like cheeseI like cheeseI like cheeseI like cheeseI like cheeseI like cheese"

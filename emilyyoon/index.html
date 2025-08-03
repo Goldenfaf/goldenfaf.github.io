@@ -245,7 +245,8 @@
                 current.controls = true;
 
                 source = document.createElement("source");
-                source.src = "videos/video"+i+".mp4";
+                source.src = videoLinks[i-1];
+                //alert(source.src);
                 source.type = "video/mp4";
                 current.appendChild(source);
 
@@ -298,6 +299,7 @@
                 }
                 document.body.appendChild(current);
 
+                /*
                 var butt = document.createElement("button");
                 
                 butt.textContent = "Description";
@@ -382,6 +384,7 @@
                     document.body.appendChild(current);
                 }
                 document.body.appendChild(butt);
+                */
             }
         }
 
@@ -1193,6 +1196,20 @@
             text.style.position = "absolute";
             text.style.fontSize = fontSize+"px";
             return text;
+        }
+
+        function getLinkFromList(title){
+            var result = "https://www.dropbox.com/scl/fo/391jhn5tu2u2u1baxpq5s/AAxpbaxA_z88nhQeDPGWBOU/emilyyoon/";
+            var test = "";
+            for(var i = 0; i < title.length;i++){
+                if(title.substring(i,i+1)==" "){
+                    test+="%20";
+                }
+                else{
+                    test+=title.substring(i,i+1);
+                }
+            }
+            return result+test+"rlkey=m2lpjuens3yzhqzcjsupglpo5&e=1&raw=1";
         }
 
 
