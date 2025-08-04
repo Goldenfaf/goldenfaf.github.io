@@ -9,7 +9,7 @@ var videoAmnt = 14;
 var youtubePage = "https://www.youtube.com/@emilyyoon2028";
 
 var videoTitles = [
-        "1. 8.25 Strikeout Compliation.mov",
+        "1. 8.25 PGF Strikeout Compliation.mov",
         "2. 8.25 Last inning vs Bolts in Elim Game (6-5 lead).mov",
         "3. 8.25 PGF Defensive Plays .mov",
         "4. 11.24 6Ks 4IP - v. Impact Gold (Super Elite Divison - Bombers Exposure).mp4",
@@ -51,6 +51,7 @@ var email = "mailto:emilyyoon0001@gmail.com";
 var phone = "tel:7147320107";
 var twitter = "https://x.com/EmilyYoon2028";
 var instagram = "https://instagram.com/ey1_fastpitch";
+var linktree = "https://linktr.ee/Emily.Yoon";
 
 var personalStatement = " Hello.  My name is Emily and I have been recognized as one of the best pitchers in the country by USA Softball HPP (top 3), Extra Innings (#2 West), LineDriveMedia (top 10), and others.  I aspire to continue to be part of this select group of talented pitchers through elite determination, work ethic, and competitiveness.  I have been fortunate enough to compete on nationally recognized teams since the age of 9 and have competed against the best teams and best pitchers across the nation.  I am tough and tournament-tested as I have won 5 National Championships (3x PGF, Sparkler, IDT) and have pitched in 4 National Finals games (3-0, twice on TV).  I love softball, baking, and hanging out with my friends and I am ranked at the top of my class with a 4.8 GPA. ";
 
