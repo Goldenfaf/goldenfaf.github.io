@@ -83,7 +83,7 @@
             //location.reload(true);
         });
         window.onload = function(){
-            window.scrollTo(0, 0);
+            //window.scrollTo(0, 0);
             scaleW = vwToPxNum(100)/1920;
             //alert(scaleW);
             document.getElementById("pageTitle").innerHTML = name + "'s Profile";
@@ -581,15 +581,30 @@
             /*----------Stats-----------*/
 
             ctx.font = "20px Verdana";
-            ctx.fillText("Stats",10,270+mobileOffset);
-            lastEnd = doStats(mobileOffset,scaleW,280, lastEnd);
+            ctx.fillText("Stats",10,260+mobileOffset);
+            if(!mobile){
+                lastEnd = doStats(mobileOffset,scaleW,280, lastEnd)-180;
+            }
+            else{
+                lastEnd = doStats(mobileOffset,scaleW,280, lastEnd);
+            }
+            
 
             /*----------Additional Athletic Info-----------*/
 
             ctx.font = "20px Verdana";
-            ctx.fillText("Additional Athletic Info",10,900);
-            lastEnd = doAdditionalInfo(mobileOffset,scaleW,280, lastEnd);
-            return firstEnd+canv.height+10;
+            
+            if(!mobile){
+                ctx.fillText("Additional Athletic Info",10,900-180);
+                lastEnd = doAdditionalInfo(mobileOffset,scaleW,280-180, lastEnd);
+                return firstEnd+canv.height+10-180;
+            }
+            else{
+                ctx.fillText("Additional Athletic Info",10,900);
+                lastEnd = doAdditionalInfo(mobileOffset,scaleW,280, lastEnd);
+                return firstEnd+canv.height+10;
+            }
+            
         }
 
         function doTeams(scaleW,lastEnd){
@@ -717,7 +732,7 @@
         function doStats(mobileOffset,scaleW,canvasEnd,lastEnd){
             //alert(lastEnd);
             if(!mobile){
-                createRoundRect(vwToPxNum(20)-5,lastEnd-10+mobileOffset,vwToPxNum(60),580-mobileOffset,10);
+                createRoundRect(vwToPxNum(20)-5,lastEnd-10+mobileOffset,vwToPxNum(60),580-mobileOffset-180,10);
             }
             else{
                 createRoundRect(vwToPxNum(20)-5,lastEnd-10+mobileOffset,vwToPxNum(120),580-mobileOffset,10);
@@ -725,32 +740,30 @@
 
 
             if(!mobile){
-                ctx.drawImage(document.getElementById("positionGraphic"),0,canvasEnd);
-
                 /*----------Positions----------*/
-                statSnippet(ctx, canvasEnd, positionsFull, "Positions", 266, 226 );
+                statSnippet(ctx, canvasEnd, positionsFull, "Positions", 10, 36 );
 
                 /*----------Misc----------*/
-                statSnippet(ctx, canvasEnd, blurbInfo[3], "Height", 10, 300);
-                statSnippet(ctx, canvasEnd, blurbInfo[4], "Weight", addVwPxNumInPx(15,10), 300);
-                statSnippet(ctx, canvasEnd, handednessBatting, "Bats", addVwPxNumInPx(30,10), 300);
-                statSnippet(ctx, canvasEnd, handednessThrowing, "Throws", addVwPxNumInPx(45,10), 300);
+                statSnippet(ctx, canvasEnd, blurbInfo[3], "Height", 10, 300-180);
+                statSnippet(ctx, canvasEnd, blurbInfo[4], "Weight", addVwPxNumInPx(15,10), 300-180);
+                statSnippet(ctx, canvasEnd, handednessBatting, "Bats", addVwPxNumInPx(30,10), 300-180);
+                statSnippet(ctx, canvasEnd, handednessThrowing, "Throws", addVwPxNumInPx(45,10), 300-180);
                 
                 /*----------Speed----------*/
                 ctx.fillStyle = "#000000";
                 ctx.font = "20px Verdana";
-                ctx.fillText("Speed",10,370+canvasEnd);
+                ctx.fillText("Speed",10,370+canvasEnd-180);
 
-                statSnippet(ctx, canvasEnd, pitchingSpeedMax, "Fastball Speed (Max)", 10, 420);
-                statSnippet(ctx, canvasEnd, hittingSpeedMax, "Exit Velocity From Tee", addVwPxNumInPx(15,10), 420);
+                statSnippet(ctx, canvasEnd, pitchingSpeedMax, "Fastball Speed (Max)", 10, 420-180);
+                statSnippet(ctx, canvasEnd, hittingSpeedMax, "Exit Velocity From Tee", addVwPxNumInPx(15,10), 420-180);
 
                 /*----------Time----------*/
                 ctx.fillStyle = "#000000";
                 ctx.font = "20px Verdana";
-                ctx.fillText("Time",10,490+canvasEnd);
+                ctx.fillText("Time",10,490+canvasEnd-180);
 
-                statSnippet(ctx, canvasEnd, yards40Sprint, "40 Yard Sprint", addVwPxNumInPx(15,10), 540);
-                statSnippet(ctx, canvasEnd, yards20Sprint, "20 Yard Sprint", 10, 540);
+                statSnippet(ctx, canvasEnd, yards40Sprint, "40 Yard Sprint", addVwPxNumInPx(15,10), 540-180);
+                statSnippet(ctx, canvasEnd, yards20Sprint, "20 Yard Sprint", 10, 540-180);
 
                 ctx.fillStyle = "#000000";
                 return lastEnd+540;
@@ -788,15 +801,13 @@
 
         function doAdditionalInfo(mobileOffset,scaleW,canvasEnd,lastEnd){
             var current;
-            ctx.font = "20px Verdana";
-            ctx.fillText("Additional Athletic Info",10,900);
             if(!mobile){
                 /*----------Additional Stats-----------*/
 
                 createRoundRect(vwToPxNum(20),lastEnd+90,vwToPxNum(20)-10,measureAthleticBox()*20,10);
 
                 ctx.font = "18px Verdana";
-                ctx.fillText("Additional Stats",20,940);
+                ctx.fillText("Additional Stats",20,940-180);
                 
                 current = document.getElementById("additionalStats");
                 current.style.position = "absolute";
@@ -809,7 +820,7 @@
                 createRoundRect(vwToPxNum(40),lastEnd+90,vwToPxNum(20)-10,measureAthleticBox()*20,10);
 
                 ctx.font = "18px Verdana";
-                ctx.fillText("Athletic Honors",addVwPxNumInPx(20,20),940);
+                ctx.fillText("Athletic Honors",addVwPxNumInPx(20,20),940-180);
 
                 current = document.getElementById("athleticHonors");
                 current.style.position = "absolute";
@@ -822,7 +833,7 @@
                 createRoundRect(vwToPxNum(60),lastEnd+90,vwToPxNum(20)-10,measureAthleticBox()*20,10);
 
                 ctx.font = "18px Verdana";
-                ctx.fillText("Other Sports/Activities",addVwPxNumInPx(40,20),940);
+                ctx.fillText("Other Sports/Activities",addVwPxNumInPx(40,20),940-180);
 
                 current = document.getElementById("otherSports");
                 current.style.position = "absolute";
