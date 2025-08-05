@@ -1,7 +1,7 @@
 var name = "Emily Yoon";
 var positions = "P, UTL, 1B";
 
-var blurbInfo = ["2028", "Fullerton, CA", "BSC Bengals - Briggs 14U-R, BSC Bengals", "5'6\"", "115lbs", "4.78/4.83"];
+var blurbInfo = ["2028", "Fullerton, CA", "BSC Bengals - Briggs 14U-R, BSC Bengals", "5'6\"", "120lbs", "4.78/4.83"];
 var blurbInfoType = ["Grad Year", "Hometown", "Club", "Height", "Weight", "GPA(Weighted/Unweighted)"];
 
 var videoAmnt = 14;
@@ -83,8 +83,10 @@ var positionsFull = "Pitcher, Utility, First Base";
 var handednessBatting = "Right";
 var handednessThrowing = "Right";
 
-var pitchingSpeedMax = "64 mph";
-var hittingSpeedMax = "65 mph";
+var metric1Type = "Fastball Speed (Max)";
+var metric1Num = "64 mph";
+var metric2Type = "Exit Velocity From Tee";
+var metric2Num = "65 mph";
 
 var yards20Sprint = "2.97s";
 var yards40Sprint = "5.59s";
